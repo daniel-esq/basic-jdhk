@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "cc243b1c-3104-4782-b215-f296e287d063",
+		"name": "BASIC-JDHK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/v1/basic/healthcheck",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"basic",
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Payload"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/v1/basic/create",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"basic",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Update"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/v1/basic/update",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"basic",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/v1/basic/read",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"basic",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/v1/basic/delete",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"basic",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

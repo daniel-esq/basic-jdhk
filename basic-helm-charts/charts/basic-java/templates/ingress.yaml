@@ -1,0 +1,3 @@
+{{- if eq .Release.Namespace .Values.global.namespace -}}
+{{- include "basic.app.common.ingress" . }}
+{{- end -}}

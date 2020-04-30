@@ -1,0 +1,8 @@
+appVersion: 0.1.0
+name: basic-java
+version: 0.1.0
+apiVersion: v2
+dependencies:
+  - name: basic-common
+    version: 0.0.1
+    repository: "file://../basic-common"

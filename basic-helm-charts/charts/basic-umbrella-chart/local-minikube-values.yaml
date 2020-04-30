@@ -1,0 +1,14 @@
+global:
+  # Non-production
+  account: 'np'
+  environment: 'Minikube'
+  cluster: 'minikube'
+  namespace: 'default'
+
+  application: basic
+
+  imageRegistry: minikube
+
+
+basic-java:
+  shortHash: latest

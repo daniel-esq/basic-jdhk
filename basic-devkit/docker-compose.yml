@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+
+  basic-java:
+    image: basic-java
+    build:
+      context: ../basic-java
+      dockerfile: Dockerfile
+    environment:
+      - RUNNING_ENVIRONMENT=Docker
+    ports:
+      - "8182:8181"

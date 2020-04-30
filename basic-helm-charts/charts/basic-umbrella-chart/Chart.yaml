@@ -1,0 +1,14 @@
+apiVersion: v2
+name: basic-umbrella-chart
+version: 0.1.0
+appVersion: 0.1.0
+dependencies:
+  - name: basic-common
+    version: "0.0.1"
+    repository: "file://../basic-common"
+    condition: basic-common.enabled
+
+  - name: basic-java
+    version: "0.1.0"
+    repository: "file://../basic-java"
+    condition: basic-java.enabled

@@ -1,0 +1,12 @@
+replicas: 1
+maxReplicas: 2
+servicePort: 80
+containerPort: 8181
+targetPort: 8181
+
+image:
+  pullPolicy: IfNotPresent
+
+resources:
+  cpu: 200m
+  memory: 300Mi

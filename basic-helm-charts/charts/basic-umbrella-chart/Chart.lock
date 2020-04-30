@@ -1,0 +1,9 @@
+dependencies:
+- name: basic-common
+  repository: file://../basic-common
+  version: 0.0.1
+- name: basic-java
+  repository: file://../basic-java
+  version: 0.1.0
+digest: sha256:9f81c60011d537c84ece3173bda00e155068cf75449bb65b07a01a7ef6a6e9af
+generated: "2020-04-29T14:55:15.642081+01:00"

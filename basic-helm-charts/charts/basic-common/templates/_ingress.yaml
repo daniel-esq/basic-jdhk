@@ -1,0 +1,21 @@
+{{- define "basic.app.common.ingress" -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    ingress.kubernetes.io/backend-protocol: {{ default "HTTP" .Values.ingressProtocol }}
+    ingress.kubernetes.io/proxy-body-size: {{ template "PROXY_BODY_SIZE" . }}
+    ingress.kubernetes.io/proxy-buffers-number: {{ template "PROXY_BUFFER_NUMBER" . }}
+    ingress.kubernetes.io/proxy-buffer-size: {{ template "PROXY_BUFFER_SIZE" . }}
+spec:
+  rules:
+  - host: {{ .Chart.Name }}-{{ .Release.Namespace }}-{{ .Values.global.cluster }}.service.{{ .Values.global.account }}.info
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: {{ .Chart.Name }}
+          servicePort: {{ .Values.servicePort }}
+{{- end -}}
