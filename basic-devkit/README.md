@@ -1,5 +1,6 @@
-This project will allow you to setup a dev environment locally and 
-in order to work the original structure of the projects must be respected:
+This project will allow you to setup a dev environment locally. 
+
+The following projects structure must be respected:
 
 * **basic-jdhk**
     * basic-devkit
@@ -7,21 +8,20 @@ in order to work the original structure of the projects must be respected:
     * basic-java
 
 
-
-###Requirements
+### Requirements
 1. **Docker** Installation instructions can be found [here](https://docs.docker.com/docker-for-windows/install/)
     * *Docker Compose version 3.7* [here](https://docs.docker.com/compose/compose-file/compose-versioning/#version-37)
 2. **Minikube** Installation instructions can be found [here](https://kubernetes.io/docs/tasks/tools/install-minikube/)
     
     
 
-###Docker
-Install the application in your local docker
+### Docker
+Install the application in your local docker:
 ~~~
 docker-compose up -d --build basic-java 
 ~~~
  
-Inspect **images**
+Inspect images:
 ~~~
 docker images
 ~~~
@@ -31,7 +31,7 @@ REPOSITORY                TAG                 IMAGE ID            CREATED       
 basic-java                latest              110eb6e49908        43 minutes ago      140MB
 ~~~
 
-Display containers
+Display containers:
 ~~~
 docker ps
 ~~~
@@ -41,54 +41,61 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 172b98ff0353        basic-java          "/bin/sh -c /docker-…"   44 minutes ago      Up 43 minutes       0.0.0.0:8182->8181/tcp   basic-devkit_basic-java_1
 ~~~
 
-Stop all containers
+Stop all containers:
 ~~~
 docker-compose down
 ~~~ 
 
-Remove image
+Remove image:
 ~~~
  docker image rm <IMAGE ID>
 ~~~ 
  
  
  
-###Minikube
-Minikube is a single-node/single-cluster Kubernetes cluster that runs on a local virtual machine
+### Minikube
+Minikube is a single kubernetes cluster and single-node tool that runs on a local virtual machine.
 
-**Note:** _Because it runs on a virtual machine you don't need to have docker running_
+**Note:** _Because it runs on a virtual machine you don't need to have docker running._
 
 
-####Initialise cluster
-If minikube has never run on your computer or the cluster has been deleted, the following **minikube-env.sh** script will
-help with the creation of the cluster and the build of all required images
+#### Initialise cluster
+If minikube has never run on your computer or the cluster has been deleted, the following **minikube-install.sh** script will
+help with the creation of the cluster and the build of all required images.
+
+**Note:** Always run with the **source** command (or **.** before the script) to load  
+the result from _eval $(minikube -p minikube docker-env)_ into the current shell.
 
 ~~~
- ./minikube-env.sh -mb
+Option 1:
+ source ./minikube-install.sh -mb
+ 
+Option 2:
+ . ./minikube-install.sh -mb
 ~~~  
 
 
-#####Script optional arguments
-Install only the minikube cluster 
+##### Script optional arguments
+Install only the minikube cluster: 
 ~~~
- ./minikube-env.sh -m
+ . ./minikube-install.sh -m
 ~~~  
 
-Install only the docker image of the application
+Install only the docker image of the application:
 ~~~
- ./minikube-env.sh -b
+ . ./minikube-install.sh -b
 ~~~  
 
-**Note:** The execution of this script will configure your local environment to re-use the Docker daemon inside the Minikube instance.
+**Note:** The execution of this script will configure your local environment to point the Docker daemon inside the Minikube instance.
 
 This way you can build and run docker images inside the minikube environment which will make your installations easier 
 than the use of a docker registry or the minikube registry addon. 
 
 
-#####Minikube status
-The check the status of you minikube you can run the following command:
+##### Minikube status
+To check the status of your minikube you can run the following command:
 ~~~
- minikube start
+ minikube status
 ~~~
 
 _Expected output example:_
@@ -101,7 +108,7 @@ kubeconfig: Stopped
 ~~~
 
 
-#####Start minikube
+##### Start minikube
 ~~~
  minikube start
 ~~~
@@ -116,10 +123,10 @@ kubeconfig: Configured
 ~~~
    
         
-#####Start dashboard
-Minikube has a dashboard addon enabled by  default that helps developers monitor the status of the cluster
+##### Start dashboard
+Minikube has a dashboard addon enabled by default that helps developers monitor the status of the cluster.
 
-_Run the below command in a different terminal tab_
+_Run the below command in a different terminal tab:_
 ~~~
  minikube dashboard
 ~~~
@@ -130,27 +137,27 @@ minikube addons list
 ~~~
 
 
-#####Stop minikube
+##### Stop minikube
 ~~~
  minikube stop
 ~~~
 
 
 
-###Resolve minikube ingress-host
-The **minikube-network.sh** will adds the entry _minikube-ip:ingress-host_ in your local **etc/host** file
-so kubernetes services become accessible via ingress.
+### Resolve minikube ingress-host
+The **minikube-network.sh** will add the entry _minikube-ip:ingress-host_ in your local **/etc/hosts** file
+so kubernetes services become reachable through ingress.
 ~~~
  ./minikube-network.sh
 ~~~
 
-After you run the script you should be able to use the ingress host to access your services.
+After you run the script you should be able to use the ingress host to access the service.
 
 To check the result of the script run:
 ~~~
 cat /etc/hosts
 ~~~
-The new entry will be present like in the example below:
+_Expected output example:_
 ~~~
 ##
 # Host Database
@@ -168,7 +175,7 @@ The new entry will be present like in the example below:
 192.168.64.21 basic-java-default-minikube.service.np.info  <-------- This is the new entry added by the script
 ~~~
 
-To retrieve the HOST from kubernetes run the following command:
+To retrieve the ingress HOST from kubernetes run the following command:
 ~~~
 kubectl get ing
 ~~~

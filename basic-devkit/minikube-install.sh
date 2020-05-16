@@ -17,6 +17,7 @@ while getopts 'mb' option
 done
 
 
+
 if $INIT_MINIKUBE; then
 
     echo "Destroy existing minikube cluster"
@@ -32,10 +33,18 @@ if $INIT_MINIKUBE; then
 
 fi
 
-echo "Point minikube docker environment"
-eval $(minikube docker-env)
-#export MINIKUBE_IP=$(minikube ip)
-#echo "Minikube virtual machine ip is: $MINIKUBE_IP"
+
+
+if minikube status | grep -q "host:\ Running"; then
+    echo "Point minikube-docker environment"
+
+    # This will only make the changes for the current session
+    # and will get reset when you restart are your bash terminal
+    eval $(minikube -p minikube docker-env)
+else
+    echo "Minikube is not running!"
+fi
+
 
 
 if $INSTALL_BASIC_JAVA; then
