@@ -49,7 +49,7 @@ fi
 
 if $INSTALL_BASIC_JAVA; then
 
-    echo "Build and install hops components"
+    echo "Build and install components"
 
     # Build component package
     mvn -f ../basic-java/pom.xml clean package
